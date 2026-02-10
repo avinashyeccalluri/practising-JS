@@ -8,4 +8,4 @@ for (let i = 0; i < a.length; i++) {
     if(a[i] < min) min = a[i];
 }
 
-console.log(min + max)
+console.log(min + max) // testing
