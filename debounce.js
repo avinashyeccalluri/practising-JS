@@ -1,26 +1,28 @@
 function debounce(func, wait){
     let timeId = null;
     return function(...args) {
-        console.log(`The args: ${args}`);
         clearTimeout(timeId);
         timeId = setTimeout(()=>{
             func.apply(this, args);
         }, wait);
     }
-
 }
-//
-// function search(query){
-//     console.log(`The query is ${query}`);
-// }
-//
-// const debouncedSearch = debounce(search, 1000);
-//
-// debouncedSearch('React')
 
+function search(query){
+    console.log(`The query is ${query}`);
+}
 
-//understanding the callback, ...args, this in detail
+// react ->
 
+const debouncedSearch = debounce(search, 1000);
+debouncedSearch('React');
+
+// //understanding the callback, ...args, this in detail
+// 1. Debounce - JS
+// 2. Abort Controller - Debounce
+// 3. Spread Operator -> merge two objects -> JSON.parse(JSON.stringify(obj)) // {...obj} // Limations Object.create(null) // prototyping
+//
+// // Searh page -> input field -> on change make an api call get the response results format it and show it
 function withLogging(func){
     return function(...args) {
         console.log(`Calling ${func.name} with:`, args);
@@ -76,22 +78,10 @@ self.greeting('Avinash', '!')
 delete self.greeting;
 
 
-//Custom apply function greet
-
-
-Function.prototype.myCall = function* (context, ...args) {
-
-    context = context || globalThis;
-    const uniqueValue = Symbol('tempFunc');
-    context[uniqueValue] = this;
-    const result = context[uniqueValue](...args);
-    delete context[uniqueValue];
-    return result;
-
-}
-
 function helloWorld(){
     console.log(this)
 }
 
-helloWorld()
+helloWorld();
+
+//call, apply and bind , callback, ...args

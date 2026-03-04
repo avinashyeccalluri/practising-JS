@@ -31,14 +31,8 @@ Promise.all([fast, medium, slow])
         // After 3 seconds: ['Fast!', 'Medium!', 'Slow!']
     });
 
-// Types of promise fullfillment. Method, when it resolves, when it rejects.
-// Promise.all() - All succeed - Any fails
-// Promise.allSettled() - All settle - New rejects
-// Promise.race() - First to settle - First to settle
-// Promise.any() - First success - All fail
-
-// Common Patterns in Promises
-// Pattern 1. Sequential Execution.
-// Pattern 2. Retry Logic
-// Pattern 3. Timeout Wrapper
-//
+// Key differences between static methods:
+    // Promise.all        → ✅✅✅ → resolves | ❌ → rejects immediately
+    // Promise.allSettled → ✅✅❌ → always resolves with all results
+    // Promise.race       → first settled (✅ or ❌) wins
+    // Promise.any        → first ✅ wins | all ❌ → rejects

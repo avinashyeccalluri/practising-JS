@@ -1,5 +1,19 @@
 
 
+//Custom apply function greet
+
+
+Function.prototype.myCall = function* (context, ...args) {
+
+    context = context || globalThis;
+    const uniqueValue = Symbol('tempFunc');
+    context[uniqueValue] = this;
+    const result = context[uniqueValue](...args);
+    delete context[uniqueValue];
+    return result;
+
+}
+
 const a = {
     name : "Avinash",
     sayName : function(){
@@ -7,12 +21,13 @@ const a = {
     },
     printThis : function(){
         // This refers to the whole a object.
+        console.log('The function reference this')
         console.log(this)
     }
 
 }
 // OUTPUT
-// a.printThis();
+a.printThis();
 
 
 function sayName() {
